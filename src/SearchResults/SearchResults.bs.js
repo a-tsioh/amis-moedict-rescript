@@ -4,8 +4,9 @@ var List = require("bs-platform/lib/js/list.js");
 var Curry = require("bs-platform/lib/js/curry.js");
 var React = require("react");
 var $$String = require("bs-platform/lib/js/string.js");
-var Belt_Array = require("bs-platform/lib/js/belt_Array.js");
+var Belt_List = require("bs-platform/lib/js/belt_List.js");
 var ArrayLabels = require("bs-platform/lib/js/arrayLabels.js");
+var Belt_Option = require("bs-platform/lib/js/belt_Option.js");
 var Belt_SetString = require("bs-platform/lib/js/belt_SetString.js");
 var Trie$AmisMoedictRescript = require("../Storage/Trie.bs.js");
 
@@ -37,18 +38,18 @@ function SearchResults(Props) {
               className: "ui segment"
             }, React.createElement("div", {
                   className: "ui bulleted divided list"
-                }, Belt_Array.slice(ArrayLabels.of_list(List.map((function (w) {
-                                return React.createElement("a", {
-                                            key: w,
-                                            className: "item",
-                                            href: "#",
-                                            onClick: (function (param) {
-                                                return Curry._1(onClickWord, (function (param) {
-                                                              return w;
-                                                            }));
-                                              })
-                                          }, w);
-                              }), results)), 0, 100)));
+                }, ArrayLabels.of_list(List.map((function (w) {
+                            return React.createElement("a", {
+                                        key: w,
+                                        className: "item",
+                                        href: "#",
+                                        onClick: (function (param) {
+                                            return Curry._1(onClickWord, (function (param) {
+                                                          return w;
+                                                        }));
+                                          })
+                                      }, w);
+                          }), Belt_Option.getWithDefault(Belt_List.take(results, 100), results)))));
 }
 
 var length = List.length;

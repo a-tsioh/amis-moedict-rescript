@@ -40,10 +40,9 @@ let make = (~data, ~query, ~onClickWord) => {
                {React.string(w)}
              </a>
            },
-           results,
+           results->Belt.List.take(100)->Belt.Option.getWithDefault(results),
          )
          ->ArrayLabels.of_list
-         ->Belt.Array.slice(~offset=0, ~len=100)
          ->React.array}
       </div>
   </div>;
